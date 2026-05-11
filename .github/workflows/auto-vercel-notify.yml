@@ -1,0 +1,14 @@
+name: Auto Notify Vercel
+
+on:
+  push:
+    branches:
+      - main  # 只要main分支有任何更新(包括Sync fork)，立刻触发
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Vercel Deploy Hook
+        run: |
+          curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}"
